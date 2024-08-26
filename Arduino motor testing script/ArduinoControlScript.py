@@ -121,7 +121,7 @@ class Rugg:
         state_value = int(response['HomeAndState'])
         homed = state_value >> 4
         xyz_state_str = self.xyz_state_dict[state_value & 0x0f]
-        #print(f'Homed: {homed:03b}, State: {xyz_state_str}')
+        #print(f'Homed: {homed:03b}, State: {xyz_state_str}')Run
         return (homed, xyz_state_str)
     
     def configure_directions(self, dir_as_positive: List[bool]):
@@ -198,6 +198,9 @@ Press enter to exit ...
     input()
     sys.exit(255)
 
+def mm_to_steps(microsteps, val_mm):
+    print('Converting mm to steps')
+
 comport = '\\\\.\\CNCA0'
 
 # X Axis, Y Axis, Z Axis
@@ -254,7 +257,7 @@ if __name__ == "__main__":
             exit_prog()
         
         if sys.argv[7].isnumeric() is True and (0 <= int(sys.argv[7]) <= 2):
-            target_position[int(sys.argv[7])] = 30000
+            target_position[int(sys.argv[7])] = 15000
         else:
             exit_prog()
             
